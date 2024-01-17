@@ -1,11 +1,13 @@
+function randomNumGen(min, max){
+    return Math.floor (Math.random()*(max-min + 1)+min);
+}
+
 const gridHtml = document.querySelector('.inner-grid');
 const btnPlay = document.getElementById('btnPlay');
 
 const difficulty = document.getElementById('difficultySelection');
-
-function randomNumGen(min, max){
-    return Math.floor (Math.random()*(max-min + 1)+min);
-}
+const resultHtml = document.getElementById('result');
+resultHtml.style.display = 'none'
 
 //al click del bottone viene creata la griglia in base alla difficoltà
 btnPlay.addEventListener('click', function(){
@@ -14,8 +16,11 @@ btnPlay.addEventListener('click', function(){
     console.clear();
     gridHtml.innerHTML='';
     gridHtml.style.pointerEvents = 'all';
+    resultHtml.innerHTML = '';
     let tries = 0;
     let bombs = [];
+    resultHtml.style.display = 'none'
+
 
     //x conterrà il numero di caselle
     //choice conterrà il nome della classe che imposta il numero di elementi in una sola riga
@@ -76,11 +81,14 @@ btnPlay.addEventListener('click', function(){
             if(bombs.includes(i)){
 
                 this.classList.add('bomb');
-
+                
+                resultHtml.style.display = 'block'
                 if(tries == 1){
-                    console.log(`Hai azzeccato ${tries} casella prima di esplodere!`)
+                    resultHtml.innerHTML = (`<p>Hai azzeccato ${tries} casella prima di esplodere!</p>
+                                            <p class='play'>Clicca il pulsante Play per ricominciare!</p>`)
                 }else{
-                    console.log(`Hai azzeccato ${tries} caselle prima di esplodere!`)
+                    resultHtml.innerHTML = (`<p>Hai azzeccato ${tries} caselle prima di esplodere!</p>
+                    <p class='play'>Clicca il pulsante Play per ricominciare!</p>`)
                 }
                 gridHtml.style.pointerEvents = 'none';
 
