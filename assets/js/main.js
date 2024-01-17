@@ -54,7 +54,7 @@ btnPlay.addEventListener('click', function(){
             let randomBombs = randomNumGen(1, x);
 
             if(!bombs.includes(randomBombs)){
-                bombs.push(randomBombs)
+                bombs.push(randomBombs);
             }
 
         }
@@ -70,25 +70,24 @@ btnPlay.addEventListener('click', function(){
         //all'interno del div stamperemo il valore dell'iterazione, quindi da 1 a 100
         box.innerHTML = `<span>${i}</span>`;
         
+        //aggiungiamo il div con tutte le classi da noi aggiunte alla griglia nell'html
+        gridHtml.append(box);
+        
+        
         //ogni casella avrà un evento al click che aggiungerà e toggliera tramite TOGGLE la classe active a ogni specifica casella grazie al this.
         box.addEventListener('click', function(){
 
-            
             if(bombs.includes(i)){
-                this.classList.toggle('bomb')
+                this.classList.toggle('bomb');
+                gridHtml.style.pointerEvents = 'none';
+                
             }else{
-
-                this.classList.toggle('active')
+                this.classList.toggle('active');
             }
-
             //stampa il valore della casella cliccata in console
             console.log(i)
         })
-        //aggiungiamo il div con tutte le classi da noi aggiunte alla griglia nell'html
-        gridHtml.append(box);
     }
     console.log(bombs.length)
     console.log(bombs)
 })
-
-
