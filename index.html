@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campo Minato</title>
+    <!-- font awesome -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.css' integrity='sha512-tx5+1LWHez1QiaXlAyDwzdBTfDjX07GMapQoFTS74wkcPMsI3So0KYmFe6EHZjI8+eSG0ljBlAQc3PQ5BTaZtQ==' crossorigin='anonymous'/>
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <nav class="container">
+            <div id="title">
+                <figure>
+                    <img src="./assets/img/boolean-logo.png" alt="boolean-logo">
+                </figure>
+                <h1>campo minato</h1>
+            </div>
+            <div class="difficulty">
+                <div class="choice">
+                    <label for="difficulty">Difficoltà:</label>
+                    <select name="difficultyChouce" id="difficultySelection">
+                        <option value="easy">Facile</option>
+                        <option value="normal">Normale</option>
+                        <option value="hard">Difficile</option>
+                    </select>
+                </div>
+                <button id="btnPlay" type="button" class="btn">Play</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- main -->
+    <main>
+        
+        <div id="grid">
+            <div class="inner-grid"></div>
+
+        </div>
+
+            
+    </main>
+
+    <!-- footer -->
+    <footer>
+        <div class="container">
+            <p>Made with <span><i class="fa-solid fa-heart fa-beat" style="color: #e32400;"></i></span> by Marco </p>
+        </div>
+    </footer>
+
+
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
