@@ -29,7 +29,7 @@ btnPlay.addEventListener('click', function(){
 
     switch(difficulty.value){
         case 'easy':
-            x = 49;
+            x = 100;
             choice = 'boxEasy';
             break;
 
@@ -39,7 +39,7 @@ btnPlay.addEventListener('click', function(){
             break;
 
         case 'hard':
-            x = 100;
+            x = 49;
             choice = 'boxHard';
             break;
 
