@@ -7,7 +7,7 @@ const btnPlay = document.getElementById('btnPlay');
 
 const difficulty = document.getElementById('difficultySelection');
 const resultHtml = document.getElementById('result');
-resultHtml.style.display = 'none'
+
 
 //al click del bottone viene creata la griglia in base alla difficoltà
 btnPlay.addEventListener('click', function(){
@@ -19,7 +19,6 @@ btnPlay.addEventListener('click', function(){
     resultHtml.innerHTML = '';
     let tries = 0;
     let bombs = [];
-    resultHtml.style.display = 'none'
 
 
     //x conterrà il numero di caselle
@@ -58,6 +57,7 @@ btnPlay.addEventListener('click', function(){
             }
 
         }
+        
         //creiamo l'elemento div
         let box = document.createElement('div');
         
@@ -82,13 +82,12 @@ btnPlay.addEventListener('click', function(){
 
                 this.classList.add('bomb');
                 
-                resultHtml.style.display = 'block'
                 if(tries == 1){
-                    resultHtml.innerHTML = (`<p>Hai azzeccato ${tries} casella prima di esplodere!</p>
-                                            <p class='play'>Clicca il pulsante Play per ricominciare!</p>`)
+
+                    resultHtml.append(gameOver(tries))
                 }else{
-                    resultHtml.innerHTML = (`<p>Hai azzeccato ${tries} caselle prima di esplodere!</p>
-                    <p class='play'>Clicca il pulsante Play per ricominciare!</p>`)
+
+                    resultHtml.append(gameOver(tries))
                 }
                 gridHtml.style.pointerEvents = 'none';
 
@@ -99,10 +98,22 @@ btnPlay.addEventListener('click', function(){
                 tries = tries + 1;
 
                 if (tries == x - bombs.length) {
-                    console.log(`Complimenti hai completato il gioco`)
+                    console.log(tries)
+                    resultHtml.innerHTML = `<p class ='success gameScore'>Complimenti, hai completato con successo il gioco</p>`
+
                     gridHtml.style.pointerEvents = 'none';
                 }
             }
         })
     }
 })
+
+function gameOver(tentativi){
+    let score = document.createElement('p');
+    score.classList.add('gameScore');
+        
+    score.innerHTML = (`<p>Hai azzeccato ${tentativi} casella prima di esplodere!</p>
+                            <p class='over'>Clicca il pulsante Play per ricominciare!</p>`)
+
+    return score
+}
