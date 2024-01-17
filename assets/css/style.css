@@ -108,13 +108,13 @@ main{
     cursor: pointer;
 }
 
-.boxEasy{
+.boxHard{
     width: calc(100% / 7);
 }
 .boxNormal{
     width: calc(100% / 9);
 }
-.boxHard{
+.boxEasy{
     width: calc(100% / 10);
 }
 
@@ -124,6 +124,9 @@ main{
     background-color: #7fdaeb;
 }
 
+.bomb{
+    background-color: rgb(129, 19, 19);
+}
 
 /* footer style */
 footer div p{

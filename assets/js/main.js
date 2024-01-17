@@ -49,7 +49,7 @@ btnPlay.addEventListener('click', function(){
     
     for(let i = 1; i <= x; i++){
         
-        //generazione di bombe con numeri randomici
+        //generazione di bombe con numeri randomici non ripetuti
         while(bombs.length < 16){
             let randomBombs = randomNumGen(1, x);
 
@@ -72,7 +72,14 @@ btnPlay.addEventListener('click', function(){
         
         //ogni casella avrà un evento al click che aggiungerà e toggliera tramite TOGGLE la classe active a ogni specifica casella grazie al this.
         box.addEventListener('click', function(){
-            this.classList.toggle('active')
+
+            
+            if(bombs.includes(i)){
+                this.classList.toggle('bomb')
+            }else{
+
+                this.classList.toggle('active')
+            }
 
             //stampa il valore della casella cliccata in console
             console.log(i)
