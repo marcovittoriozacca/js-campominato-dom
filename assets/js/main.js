@@ -7,24 +7,19 @@ function randomNumGen(min, max){
     return Math.floor (Math.random()*(max-min + 1)+min);
 }
 
-
-
-
-
-
 //al click del bottone viene creata la griglia in base alla difficoltà
 btnPlay.addEventListener('click', function(){
+
+    //vari reset 
     console.clear();
     gridHtml.innerHTML='';
-
-    //array contenente le bombe
+    gridHtml.style.pointerEvents = 'all';
+    let tries = 0;
     let bombs = [];
 
     //x conterrà il numero di caselle
     //choice conterrà il nome della classe che imposta il numero di elementi in una sola riga
-
     let choice = '';
-
     let x;
 
     switch(difficulty.value){
@@ -58,8 +53,6 @@ btnPlay.addEventListener('click', function(){
             }
 
         }
-        
-
         //creiamo l'elemento div
         let box = document.createElement('div');
         
@@ -67,8 +60,8 @@ btnPlay.addEventListener('click', function(){
         //aggiungiamo anche la variabile choice che contiene una delle 3 classi basate sulla difficoltà 
         box.classList.add('box', choice);
     
-        //all'interno del div stamperemo il valore dell'iterazione, quindi da 1 a 100
-        box.innerHTML = `<span>${i}</span>`;
+        //all'interno del div stamperemo il valore dell'iterazione, quindi da 1 a 100. Decommentare la riga sotto per vedere il numero delle caselle
+        // box.innerHTML = `<span>${i}</span>`;
         
         //aggiungiamo il div con tutte le classi da noi aggiunte alla griglia nell'html
         gridHtml.append(box);
@@ -77,17 +70,31 @@ btnPlay.addEventListener('click', function(){
         //ogni casella avrà un evento al click che aggiungerà e toggliera tramite TOGGLE la classe active a ogni specifica casella grazie al this.
         box.addEventListener('click', function(){
 
+            //al click di un box se il numero associato alla casella non rientra in quelli generati dal vettore BOMBS allora la casella diventerà azzurra e potremo continuare a cliccarne altre
+            //se la casella risulta essere una bomba allora diventerà rossa, non potremo più cliccare nulla nella griglia e in console avremo il numero di caselle cliccate fino a quel momento
+            
             if(bombs.includes(i)){
-                this.classList.toggle('bomb');
+
+                this.classList.add('bomb');
+
+                if(tries == 1){
+                    console.log(`Hai azzeccato ${tries} casella prima di esplodere!`)
+                }else{
+                    console.log(`Hai azzeccato ${tries} caselle prima di esplodere!`)
+                }
                 gridHtml.style.pointerEvents = 'none';
-                
+
             }else{
-                this.classList.toggle('active');
+
+                this.classList.add('active');
+                this.style.pointerEvents = 'none';
+                tries = tries + 1;
+
+                if (tries == x - bombs.length) {
+                    console.log(`Complimenti hai completato il gioco`)
+                    gridHtml.style.pointerEvents = 'none';
+                }
             }
-            //stampa il valore della casella cliccata in console
-            console.log(i)
         })
     }
-    console.log(bombs.length)
-    console.log(bombs)
 })
