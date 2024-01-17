@@ -3,10 +3,22 @@ const btnPlay = document.getElementById('btnPlay');
 
 const difficulty = document.getElementById('difficultySelection');
 
+function randomNumGen(min, max){
+    return Math.floor (Math.random()*(max-min + 1)+min);
+}
+
+
+
+
+
+
 //al click del bottone viene creata la griglia in base alla difficoltà
 btnPlay.addEventListener('click', function(){
     console.clear();
     gridHtml.innerHTML='';
+
+    //array contenente le bombe
+    let bombs = [];
 
     //x conterrà il numero di caselle
     //choice conterrà il nome della classe che imposta il numero di elementi in una sola riga
@@ -37,6 +49,17 @@ btnPlay.addEventListener('click', function(){
     
     for(let i = 1; i <= x; i++){
         
+        //generazione di bombe con numeri randomici
+        while(bombs.length < 16){
+            let randomBombs = randomNumGen(1, x);
+
+            if(!bombs.includes(randomBombs)){
+                bombs.push(randomBombs)
+            }
+
+        }
+        
+
         //creiamo l'elemento div
         let box = document.createElement('div');
         
@@ -57,5 +80,8 @@ btnPlay.addEventListener('click', function(){
         //aggiungiamo il div con tutte le classi da noi aggiunte alla griglia nell'html
         gridHtml.append(box);
     }
+    console.log(bombs.length)
+    console.log(bombs)
 })
+
 
